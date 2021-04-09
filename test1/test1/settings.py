@@ -76,6 +76,8 @@ WSGI_APPLICATION = 'test1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# sqlite3 关系型数据库
+# 过渡了解
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
