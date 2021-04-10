@@ -14,6 +14,9 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# print(__file__)
+# D:\Users\11027\Desktop\Django基础\Django-base\test1\test1\settings.py
+# BASE_DIR = D:\Users\11027\Desktop\Django基础\Django-base
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,6 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!u0ljk4p#((=m_#1a6#^2w)5x0r19(s!x0x#va+bv4c9=qld18'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+# 调试模式
+# 在我们开发的时候，我们需要看到更多的信息，所以要开启debug模式
+# 我们的程序上线后（真正给用户使用），就改为 False
 DEBUG = True
 
 # 默认是127.0.0.1

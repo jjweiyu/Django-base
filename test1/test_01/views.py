@@ -24,7 +24,9 @@ def index(request):
     # request --> 请求
     # template_name --> 模板名字
     # context=None
+    # 准备上下文：定义在字典中（测试数据）
     context={
         "name": "马上双十一，点击有惊喜"
     }
+    # 将上下文交给模板中进行处理，处理后视图响应给客户端
     return render(request, 'test_01/index.html', context=context)
