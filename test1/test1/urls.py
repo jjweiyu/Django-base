@@ -14,10 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from test_01.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('路由', '视图函数名')
-    path('index/', index),
+    # path('index/', index),
+    # 当需要访问路由时，需要添加 Django 项目工程的 path 路由 + 子应用的路由
+    # 因为我们想要直接通过index/进行访问，所以工程的 path 内路由为空
+    path('', include('test_01.urls'))
 ]
