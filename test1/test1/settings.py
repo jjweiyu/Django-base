@@ -36,7 +36,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.contenttypes' ,
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -111,9 +111,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# 修改admin界面的文字为中文
+LANGUAGE_CODE = 'zh-Hans' # 'en-us'
 
-TIME_ZONE = 'UTC'
+# 设置时区
+TIME_ZONE = 'Asia/Shanghai' # 'UTC'
 
 USE_I18N = True
 
