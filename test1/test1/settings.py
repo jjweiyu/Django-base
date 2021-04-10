@@ -27,7 +27,8 @@ DEBUG = True
 
 # 默认是127.0.0.1
 # 要是以本机IP去访问的话，需要加上本机IP地址
-ALLOWED_HOSTS = ['172.34.64.71']
+# ALLOWED_HOSTS = ['172.34.64.71']
+ALLOWED_HOSTS = []
 
 
 # Application definition
