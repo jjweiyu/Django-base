@@ -89,10 +89,10 @@ BookInfo.objects.count()
 # 模型类名.object.get(属性名__运算符=值)        获取 1个结果  或者 异常
 
 # 查询编号为 4的图书
-book = BookInfo.objects.get(id=4)   # 简写形式  （属性名=值）
+book = BookInfo.objects.get(id=4)  # 简写形式  （属性名=值）
 book = BookInfo.objects.get(id__exact=4)  # 完整形式
 book = BookInfo.objects.get(pk=4)  # primary key 主键
-book =BookInfo.objects.filter(id=4)
+book = BookInfo.objects.filter(id=4)
 
 # 查询书名中包含'Java'的图书
 BookInfo.objects.filter(name__contains='Java')
@@ -104,7 +104,7 @@ BookInfo.objects.filter(name__endswith='门')
 BookInfo.objects.filter(name__isnull=True)  # 若没有，则返回空列表 不会报错
 
 # 查询编号为 2 或 4 或 6的图书
-BookInfo.objects.filter(id__in=(2,4,6))  # id__in=[2,4,6]
+BookInfo.objects.filter(id__in=(2, 4, 6))  # id__in=[2,4,6]
 
 # 查询编号大于3的图书
 # 大于 gt
@@ -124,6 +124,7 @@ BookInfo.objects.filter(pub_time__gt='2012-1-1')
 
 #############################################################
 from django.db.models import F
+
 # 使用：2个属性的比较  还可以在F对象上使用算术运算
 # 语法形式：以 filter为例     模型类名.object.filter(属性名__运算符=F('第二个属性名'))
 # 查询阅读量大于等于评论量的图书
@@ -136,16 +137,17 @@ BookInfo.objects.filter(readcount__gte=F('commentcount'))
 # 1>
 BookInfo.objects.filter(readcount__lt=30).filter(id__gt=3)
 # 2>
-BookInfo.objects.filter(readcount__lt=30,id__gt=3)
+BookInfo.objects.filter(readcount__lt=30, id__gt=3)
 
 # 或者查询
 from django.db.models import Q
+
 # 或者语法格式：   模型类名.object.filter(Q(属性名__运算符=)|Q(属性名__运算符=)|...)
 # 并且语法格式：   模型类名.object.filter(Q(属性名__运算符=)&Q(属性名__运算符=)&...)
 # not 非语法格式：   模型类名.object.filter(~Q(属性名__运算符=))
 
 # 查询阅读量大于30，或者编号小于3的图书
-BookInfo.objects.filter(Q(readcount__gt=30)|Q(id__lt=3))
+BookInfo.objects.filter(Q(readcount__gt=30) | Q(id__lt=3))
 
 # 查询编号不等于3的图书
 BookInfo.objects.exclude(id=3)
