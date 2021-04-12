@@ -30,6 +30,10 @@ class BookInfo(models.Model):
     readcount = models.IntegerField(default=0)
     commentcount = models.IntegerField(default=0)
     is_delete = models.BooleanField(default=False)
+    # 1对多的关系模型中
+    # 系统会自动为我们添加一个字段 关联模型类名小写__set
+    #
+    # peopleinfo_set = [PeopleInfo, PeopleInfo,...
 
     def __str__(self):
         return self.name
