@@ -64,6 +64,19 @@ def json(request):
     return HttpResponse("json")
 
 
+def response(request):
+    return HttpResponse('res', status=200)
+    # 状态码
+    # 1xx
+    # 2xx
+    # 3xx
+    # 4xx  请求有问题
+        # 404 找不到页面  路由有问题
+        # 403 禁止访问   权限问题
+    # 5xx
+    # HTTP status code must be an integer from 100 to 599.
+
+
 """
 查询字符串
 

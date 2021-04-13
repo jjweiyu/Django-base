@@ -1,6 +1,6 @@
 from django.urls import path, converters
 
-from book.views import create_book, shop, register, json
+from book.views import create_book, shop, register, json,response
 from django.urls.converters import register_converter
 
 
@@ -29,7 +29,8 @@ urlpatterns = [
     # 3. 使用转换器
     path('<int:city_id>/<phone:mobile>/', shop),
     path('register/', register),
-    path('json/', json)
+    path('json/', json),
+    path('res/', response),
 ]
 """
 class IntConverter:
