@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 # Create your views here.
 from book.models import BookInfo
@@ -110,6 +110,9 @@ def test(request):
     response = JsonResponse(data=str, safe=False)
     return response
 
+
+def red(resquest):
+    return redirect("http://www.baidu.com")
 """
 查询字符串
 
