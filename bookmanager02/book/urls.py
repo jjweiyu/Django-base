@@ -1,6 +1,6 @@
 from django.urls import path, converters
 
-from book.views import create_book, shop, register, json,response
+from book.views import create_book, shop, register, json, response, test
 from django.urls.converters import register_converter
 
 
@@ -31,6 +31,7 @@ urlpatterns = [
     path('register/', register),
     path('json/', json),
     path('res/', response),
+    path('test/', test)
 ]
 """
 class IntConverter:

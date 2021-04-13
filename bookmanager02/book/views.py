@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -65,7 +65,35 @@ def json(request):
 
 
 def response(request):
-    return HttpResponse('res', status=200)
+    info = {
+        "name": '魏哲宇',
+        "address": '华北水利水电大学'
+    }
+    girl = [
+        {
+            "name": '魏哲宇',
+            "address": '华北水利水电大学'
+        },
+        {
+            "name": '王佳伟',
+            "address": '华北水电水利大学'
+        }
+    ]
+    # data参数 返回的响应数据 一般是字典类型
+    """
+    safe = True 是表示我们的 data 是字典数据
+    JsonResponse 可以把字典转换为  json
+    
+    现在给了一个非字典数据，safe = False 意思是出了问题我们自己负责
+    """
+    # response = JsonResponse(data=girl)
+    # In order to allow non-dict objects to be serialized set the safe parameter to False.
+    # 提示我们传入一个非字典数据的数据，就要修改 JsonResponse 中的 safe 参数值为 False
+    response = JsonResponse(data=girl, safe=False)
+    return response
+
+
+    # return HttpResponse('res', status=200)
     # 状态码
     # 1xx
     # 2xx
@@ -76,6 +104,11 @@ def response(request):
     # 5xx
     # HTTP status code must be an integer from 100 to 599.
 
+
+def test(request):
+    str = "weizheyu is idiolt"
+    response = JsonResponse(data=str, safe=False)
+    return response
 
 """
 查询字符串
