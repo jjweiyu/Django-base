@@ -15,8 +15,13 @@ def create_book(request):
     return HttpResponse("create")
 
 
-def shop(request, city_id, shop_id):
-    print(city_id, shop_id)
+def shop(request, city_id, mobile):
+    # 通过正则表达式进行URL中的参数判断
+    # import re
+    # if not re.match('\d{5}',shop_id):
+    #     return HttpResponse("没有此商品")
+
+    print(city_id, mobile)
 
     query_params = request.GET
     print(query_params)
@@ -53,7 +58,7 @@ def json(request):
     print(body_dict)
 
     ###########请求头##########
-    # 获取请求头信息   字典类型 
+    # 获取请求头信息   字典类型
     # print(request.META)
     print(request.META.get('SERVER_PORT'))
     return HttpResponse("json")
