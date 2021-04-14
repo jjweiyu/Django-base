@@ -1,5 +1,5 @@
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from book.models import BookInfo
@@ -33,12 +33,14 @@ def shop(request, city_id, mobile):
     # 当含有多个值的时候需要用 getlist 来获取键值
     return HttpResponse("小饭店")
 
+
 def register(request):
     # 获取 form表单数据
     data = request.POST
     print(data)
     # <QueryDict: {'username': ['jing'], 'password': ['123']}>
     return HttpResponse("ok")
+
 
 def json(request):
     # json数据不能通过 request.POST获取,需要通过 request.body接收
@@ -57,7 +59,7 @@ def json(request):
     body_dict = json.loads(body_str)
     print(body_dict)
 
-    ###########请求头##########
+    ###################请求头#################
     # 获取请求头信息   字典类型
     # print(request.META)
     print(request.META.get('SERVER_PORT'))
@@ -92,15 +94,14 @@ def response(request):
     response = JsonResponse(data=girl, safe=False)
     return response
 
-
     # return HttpResponse('res', status=200)
     # 状态码
     # 1xx
     # 2xx
     # 3xx
     # 4xx  请求有问题
-        # 404 找不到页面  路由有问题
-        # 403 禁止访问   权限问题
+    # 404 找不到页面  路由有问题
+    # 403 禁止访问   权限问题
     # 5xx
     # HTTP status code must be an integer from 100 to 599.
 
@@ -113,6 +114,8 @@ def test(request):
 
 def red(resquest):
     return redirect("http://www.baidu.com")
+
+
 """
 查询字符串
 
@@ -122,3 +125,33 @@ url 以 ? 为分隔 分为2部分
 ? 前边的是 请求路径
 ? 后边的是 查询字符串 类似于字典 key=value 多个数据采用 & 拼接
 """
+
+
+
+"""
+
+第一次请求，携带 查询字符串
+http://127.0.0.1:8000/set_cookie/?username=jing&password=123
+服务器接收到请求后，获取username，然后服务器设置cookie信息，cookie信息包括 username
+浏览器接收到服务器的响应后，应该把cookie保存起来
+
+第二次及其之后的请求，我们访问http://127.0.0.1:8000 都会携带cookie信息。服务器可以读取cookie信息来判断用户身份
+"""
+
+
+def set_cookie(request):
+    # 1. 获取查询字符串中的数据
+    username = request.GET.get("username")
+    # 2. 服务器设置cookie信息 通过响应对象的 set_cookie方法
+    response = HttpResponse("set_cookie")
+    # 第一个参数 key 设置 cookie的名称
+    # 第二个参数 value 设置该 cookie的内容
+    response.set_cookie('name', username)
+    return response
+
+
+def get_cookie(request):
+    # 专门通过请求对象 request.COOKIES 方法获取请求头中的 cookie信息
+    print(request.COOKIES)   # 是字典数据
+    name = request.COOKIES.get("name")
+    return HttpResponse(name)

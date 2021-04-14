@@ -1,6 +1,6 @@
 from django.urls import path, converters
 
-from book.views import create_book, shop, register, json, response, test, red
+from book.views import create_book, shop, register, json, response, test, red, set_cookie, get_cookie
 from django.urls.converters import register_converter
 
 
@@ -11,7 +11,7 @@ class MobileConverter:
 
     # 验证没有问题的数据给视图函数
     def to_python(self, value):
-        return int(value)   # 具体看需求返回，也可以 return str(value)
+        return int(value)  # 具体看需求返回，也可以 return str(value)
 
     # def to_url(self, value):
     #     return str(value)
@@ -33,6 +33,8 @@ urlpatterns = [
     path('res/', response),
     path('test/', test),
     path('redirect/', red),
+    path('set_cookie/', set_cookie),
+    path('get_cookie/', get_cookie),
 ]
 """
 class IntConverter:
