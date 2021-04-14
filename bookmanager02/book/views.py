@@ -126,8 +126,6 @@ url 以 ? 为分隔 分为2部分
 ? 后边的是 查询字符串 类似于字典 key=value 多个数据采用 & 拼接
 """
 
-
-
 """
 
 第一次请求，携带 查询字符串
@@ -158,6 +156,44 @@ def set_cookie(request):
 
 def get_cookie(request):
     # 专门通过请求对象 request.COOKIES 方法获取请求头中的 cookie信息
-    print(request.COOKIES)   # 是字典数据
+    print(request.COOKIES)  # 是字典数据
     name = request.COOKIES.get("name")
     return HttpResponse(name)
+
+
+#########################session##########################
+# session 是保存在服务器端   --- 数据相对安全
+# session 需要依赖于 cookie    --- cookie被禁用，session就使用不了
+
+"""
+
+第一次请求 http://127.0.0.1:8000/set_session/?username=weiyu  我们在服务器端设置session信息
+服务器会生成一个seesionid的cookie信息
+浏览器接受到这个信息之后，会把cookie数据保存起来
+
+第二次及其之后的请求 都会携带这个sessionid，服务器会验证这个sessionid，验证没有问题会读取相关数据 实现业务逻辑
+
+"""
+
+
+def set_session(request):
+    # 1. 模拟 获取用户信息
+    username = request.GET.get("username")
+
+    # 2. 设置session信息  request.session["key"] = value
+    # 设置的 键值对 是保存到 django_session表中的 session_data中的
+    # 假如 我们通过模型查询 查询到了用户信息
+    user_id = 1
+    request.session["user_id"] = user_id
+    request.session["username"] = username
+
+    return HttpResponse("set_session")
+
+
+def get_session(request):
+    user_id = request.session.get("user_id")
+    username = request.session.get("username")
+    # 格式化字符串的函数 str.format()
+    # 类似于格式化输出 '%s' %(user_id, username)
+    content = '{},{}'.format(user_id, username)
+    return HttpResponse(content)
