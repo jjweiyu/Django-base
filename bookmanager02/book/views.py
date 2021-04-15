@@ -205,3 +205,36 @@ def get_session(request):
     # 类似于格式化输出 '%s' %(user_id, username)
     content = '{},{}'.format(user_id, username)
     return HttpResponse(content)
+
+
+######################类视图#############################
+
+def login(request):
+    print(request.method)
+    if request.method == 'GET':
+        return HttpResponse("GET 逻辑")
+    else:
+        return HttpResponse("POST 逻辑")
+
+
+"""
+类视图的定义
+
+class 类视图名字(View):
+    def get(self,request):
+        return HttpResponse('xxx')
+    def post(self,request):
+        return HttpResponse('xxx')
+
+1. 继承自View
+2. 类视图的方法 是采用 http 请求方法 小写来区分不同的请求方式
+"""
+from django.views import View
+
+
+class LoginView(View):
+    def get(self, request):
+        return HttpResponse("get get")
+
+    def post(self, request):
+        return HttpResponse("post post")

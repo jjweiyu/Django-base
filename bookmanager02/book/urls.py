@@ -1,7 +1,7 @@
 from django.urls import path, converters
 
 from book.views import create_book, shop, register, json, response, test, red, set_cookie, get_cookie, set_session, \
-    get_session
+    get_session, LoginView
 from django.urls.converters import register_converter
 
 
@@ -37,7 +37,9 @@ urlpatterns = [
     path('set_cookie/', set_cookie),
     path('get_cookie/', get_cookie),
     path('set_session/', set_session),
-    path('get_session/', get_session)
+    path('get_session/', get_session),
+    ########类视图###########33
+    path('163login/', LoginView.as_view())
 ]
 """
 class IntConverter:
